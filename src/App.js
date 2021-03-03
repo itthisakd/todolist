@@ -15,19 +15,19 @@ function App() {
       task: "Do the dishes",
       date: "12/12/2012",
       tab: "todo",
-      id: 24,
+      id: 244,
     },
     {
       task: "Make dinner",
       date: "12/12/2012",
       tab: "doing",
-      id: 24,
+      id: 235,
     },
     {
       task: "Clean the toilet",
       date: "12/12/2012",
       tab: "done",
-      id: 24,
+      id: 236,
     },
   ]);
   const [status, setStatus] = useState("home");
