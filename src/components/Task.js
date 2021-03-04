@@ -74,7 +74,7 @@ function Task(props) {
         width: 300px
         height: 50px;
         padding: 10px;
-        border: 1px solid black;
+        border-bottom: solid 1px black;
         margin: 5px;
       `}
         >
@@ -89,7 +89,7 @@ function Task(props) {
             `}
           />
           <button type="submit" onClick={() => handleSetTask(props.id)}>
-            <i class="fas fa-check"></i>
+            <i className="fas fa-check"></i>
           </button>
         </div>
       )}
@@ -102,7 +102,7 @@ function Task(props) {
         width: 300px
         height: 50px;
         padding: 10px;
-        border: 1px solid black;
+        border-bottom: solid 1px black;
         margin: 5px;
       `}
         >

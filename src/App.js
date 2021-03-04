@@ -31,11 +31,10 @@ function App() {
     },
   ]);
   const [status, setStatus] = useState("home");
-  const [search, setSearch] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const [searchMode, setSearchMode] = useState(false);
 
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value);
-  };
+  
 
   function handleEdit(index) {
     setList(
@@ -59,87 +58,156 @@ function App() {
         list={list}
         id={id}
         handleEdit={handleEdit}
-        // task={task}
+        searchMode={searchMode}
       />
     );
   } else {
     return (
-      <div className="App">
-        <Header
-          setStatus={setStatus}
-          setList={setList}
-          list={list}
-          id={id}
-          handleSearchChange={handleSearchChange}
-        />
-
-        <div
-          css={css`
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            width: 100%;
-            height: 100vh;
-          `}
-        >
-          <List heading="TO DO">
-            {list
-              .filter(
-                (item) =>
-                  item.tab === "todo" &&
-                  item.task.toLowerCase().includes(search.toLowerCase())
-              )
-              .map((item) => (
-                <Task
-                  key={item.id}
-                  task={item.task}
-                  date={item.date}
-                  id={item.id}
-                  setStatus={setStatus}
-                  setList={setList}
-                  list={list}
-                />
-              ))}
-          </List>
-          <List heading="DOING">
-            {list
-              .filter(
-                (item) =>
-                  item.tab === "doing" &&
-                  item.task.toLowerCase().includes(search.toLowerCase())
-              )
-              .map((item) => (
-                <Task
-                  key={item.id}
-                  task={item.task}
-                  date={item.date}
-                  id={item.id}
-                  setStatus={setStatus}
-                  setList={setList}
-                  list={list}
-                />
-              ))}
-          </List>
-          <List heading="DONE">
-            {list
-              .filter(
-                (item) =>
-                  item.tab === "done" &&
-                  item.task.toLowerCase().includes(search.toLowerCase())
-              )
-              .map((item, index) => (
-                <Task
-                  key={item.id}
-                  index={index}
-                  task={item.task}
-                  date={item.date}
-                  id={item.id}
-                  setStatus={setStatus}
-                  setList={setList}
-                  list={list}
-                />
-              ))}
-          </List>
+      <div>
+        <div className="App" mode="search">
+          <Header
+            setStatus={setStatus}
+            setList={setList}
+            list={list}
+            id={id}
+            // handleSearchChange={handleSearchChange}
+            setSearchMode={setSearchMode}
+            setSearchValue={setSearchValue}
+          />
+          {!searchMode && (
+            <div
+              css={css`
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+                height: 100vh;
+              `}
+            >
+              <List heading="TO DO">
+                {list
+                  .filter((item) => item.tab === "todo")
+                  .map((item) => (
+                    <Task
+                      key={item.id}
+                      task={item.task}
+                      date={item.date}
+                      id={item.id}
+                      setStatus={setStatus}
+                      setList={setList}
+                      list={list}
+                    />
+                  ))}
+              </List>
+              <List heading="DOING">
+                {list
+                  .filter((item) => item.tab === "doing")
+                  .map((item) => (
+                    <Task
+                      key={item.id}
+                      task={item.task}
+                      date={item.date}
+                      id={item.id}
+                      setStatus={setStatus}
+                      setList={setList}
+                      list={list}
+                    />
+                  ))}
+              </List>
+              <List heading="DONE">
+                {list
+                  .filter((item) => item.tab === "done")
+                  .map((item, index) => (
+                    <Task
+                      key={item.id}
+                      index={index}
+                      task={item.task}
+                      date={item.date}
+                      id={item.id}
+                      setStatus={setStatus}
+                      setList={setList}
+                      list={list}
+                    />
+                  ))}
+              </List>
+            </div>
+          )}
+          {searchMode && (
+            <div
+              css={css`
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+                height: 100vh;
+              `}
+            >
+              <List heading="TO DO">
+                {list
+                  .filter(
+                    (item) =>
+                      item.tab === "todo" &&
+                      item.task
+                        .toLowerCase()
+                        .includes(searchValue.toLowerCase())
+                  )
+                  .map((item) => (
+                    <Task
+                      key={item.id}
+                      task={item.task}
+                      date={item.date}
+                      id={item.id}
+                      setStatus={setStatus}
+                      setList={setList}
+                      list={list}
+                    />
+                  ))}
+              </List>
+              <List heading="DOING">
+                {list
+                  .filter(
+                    (item) =>
+                      item.tab === "doing" &&
+                      item.task
+                        .toLowerCase()
+                        .includes(searchValue.toLowerCase())
+                  )
+                  .map((item) => (
+                    <Task
+                      key={item.id}
+                      task={item.task}
+                      date={item.date}
+                      id={item.id}
+                      setStatus={setStatus}
+                      setList={setList}
+                      list={list}
+                    />
+                  ))}
+              </List>
+              <List heading="DONE">
+                {list
+                  .filter(
+                    (item) =>
+                      item.tab === "done" &&
+                      item.task
+                        .toLowerCase()
+                        .includes(searchValue.toLowerCase())
+                  )
+                  .map((item, index) => (
+                    <Task
+                      key={item.id}
+                      index={index}
+                      task={item.task}
+                      date={item.date}
+                      id={item.id}
+                      setStatus={setStatus}
+                      setList={setList}
+                      list={list}
+                    />
+                  ))}
+              </List>
+            </div>
+          )}
         </div>
       </div>
     );

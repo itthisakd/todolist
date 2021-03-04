@@ -18,7 +18,7 @@ function List(props) {
         css={css`
           background-color: lightgrey;
           font-size: 20px;
-          border: 1px solid black;
+          border-bottom: 1px solid black;
           margin: 0;
           padding: 5px;
           text-align: center;
