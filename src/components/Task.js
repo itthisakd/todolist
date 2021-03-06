@@ -9,7 +9,8 @@ function Task(props) {
   function handleDelete(index) {
     props.setList(props.list.filter((item) => item.id !== index));
   }
-  function handleDoing(index) {
+  function handleTabChange(index, thing) {
+    console.log(props);
     props.setList(
       props.list.map((item) =>
         item.id === index
@@ -17,21 +18,7 @@ function Task(props) {
               task: item.task,
               date: item.date,
               id: item.id,
-              tab: (item.tab = "doing"),
-            }
-          : item
-      )
-    );
-  }
-  function handleDone(index) {
-    props.setList(
-      props.list.map((item) =>
-        item.id === index
-          ? {
-              task: item.task,
-              date: item.date,
-              id: item.id,
-              tab: (item.tab = "done"),
+              tab: (item.tab = thing),
             }
           : item
       )
@@ -62,6 +49,21 @@ function Task(props) {
     );
     setEdit(!edit);
   };
+
+  const buttonCreator = (name, input) => {
+    return (
+      <button
+        css={css`
+          margin: auto;
+          height: 2em;
+          border-radius: 3px;
+        `}
+        onClick={() => handleTabChange(props.id, input)}
+      >
+        {name}
+      </button>
+    );
+  }
 
   return (
     <div>
@@ -144,26 +146,9 @@ function Task(props) {
             >
               <i className="far fa-trash-alt"></i>
             </button>
-            <button
-              css={css`
-                margin: auto;
-                height: 2em;
-                border-radius: 3px;
-              `}
-              onClick={() => handleDoing(props.id)}
-            >
-              Doing
-            </button>
-            <button
-              css={css`
-                margin: auto;
-                height: 2em;
-                border-radius: 3px;
-              `}
-              onClick={() => handleDone(props.id)}
-            >
-              Done
-            </button>
+            {props.heading !== "todo" && buttonCreator("Todo", "todo")}
+            {props.heading !== "doing" && buttonCreator("Doing", "doing")}
+            {props.heading !== "done" && buttonCreator("Done", "done")}
           </div>
         </div>
       )}

@@ -7,13 +7,15 @@ export default function Header(props) {
     props.setStatus("add");
   }
 
-  const handleSearchClick = () => {
-    props.setSearchMode(true);
-  };
-
   const handleSearchChange = (e) => {
     props.setSearchMode(true);
     props.setSearchValue(e.target.value);
+    console.log(props.searchMode);
+  };
+
+  const handleCancelClick = (e) => {
+    props.setSearchMode(false);
+    props.setSearchValue("");
   };
 
   return (
@@ -40,13 +42,13 @@ export default function Header(props) {
           css={css`
             font-size: 15px;
             height: 30px;
-            width: 80px;
+            width: 120px;
             padding: 5px;
             margin: 25px 0 0 150px;
           `}
           onClick={handleAddClick}
         >
-          <strong>Add</strong>
+          <strong>Add Task</strong>
         </button>
         <div
           css={css`
@@ -60,8 +62,10 @@ export default function Header(props) {
               height: 20px;
             `}
             onChange={handleSearchChange}
+            value={props.searchValue}
           />
           {!props.searchMode && (
+            //search button
             <button
               type="text"
               css={css`
@@ -70,12 +74,12 @@ export default function Header(props) {
                 padding: 5px;
                 margin: 0 20px;
               `}
-              onClick={handleSearchClick}
             >
               Search
             </button>
           )}
           {props.searchMode && (
+            //cancel button
             <button
               type="text"
               css={css`
@@ -84,7 +88,7 @@ export default function Header(props) {
                 padding: 5px;
                 margin: 0 20px;
               `}
-              onClick={props.setSearchMode(false)}
+              onClick={handleCancelClick}
             >
               Cancel
             </button>

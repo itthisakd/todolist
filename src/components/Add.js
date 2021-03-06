@@ -12,7 +12,6 @@ function Add(props) {
   function handleDateChange(e) {
     setDate(e.target.value);
   }
-
   function handleSubmit(e) {
     e.preventDefault();
     props.setList([
@@ -27,7 +26,6 @@ function Add(props) {
     props.setStatus("home");
   }
   function handleBackClick() {
-    // console.log(props.list);
     props.setStatus("home");
   }
 
@@ -43,7 +41,7 @@ function Add(props) {
     >
       <h1
         css={css`
-          background-color: lightgreen;
+          background-color: lightgrey;
           width: 100%;
           text-align: center;
           align-items: center;
@@ -105,19 +103,18 @@ function Add(props) {
             />
           </div>
           <br />
-          <button type="submit">SUBMIT</button>
+          <button type="submit">Submit</button>
         </form>
       </div>
       <br />
       <button
         onClick={handleBackClick}
         type="text"
-        // primary={true}
         css={css`
           margin: auto;
         `}
       >
-        BACK
+        Back
       </button>
     </div>
   );
