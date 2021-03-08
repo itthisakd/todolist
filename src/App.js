@@ -7,7 +7,6 @@ import Task from "./components/Task";
 import Header from "./components/Header";
 
 function App() {
-  let id = 0;
   const [list, setList] = useState([
     //contains mock data
     {
@@ -32,6 +31,7 @@ function App() {
   const [status, setStatus] = useState("home");
   const [searchValue, setSearchValue] = useState("");
   const [searchMode, setSearchMode] = useState(false);
+  const [id, setID] = useState(0);
 
   const display = (tab) => {
     return list
@@ -72,7 +72,15 @@ function App() {
   };
 
   if (status === "add") {
-    return <Add setStatus={setStatus} setList={setList} list={list} id={id} />;
+    return (
+      <Add
+        setStatus={setStatus}
+        setList={setList}
+        list={list}
+        id={id}
+        setID={setID}
+      />
+    );
   } else {
     return (
       <div>

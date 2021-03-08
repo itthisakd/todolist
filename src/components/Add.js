@@ -13,6 +13,7 @@ function Add(props) {
     setDate(e.target.value);
   }
   function handleSubmit(e) {
+    props.setID(props.id + 1);
     e.preventDefault();
     props.setList([
       ...props.list,
@@ -20,9 +21,10 @@ function Add(props) {
         task: task,
         date: date,
         tab: "todo",
-        id: props.id + 1,
+        id: props.id,
       },
     ]);
+    console.log(props.id);
     props.setStatus("home");
   }
   function handleBackClick() {
